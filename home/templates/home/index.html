@@ -1,119 +1,12 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hacker News Clone</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-        }
-
-        .navbar-container {
-            width: 85%;
-            margin: 5px auto 0 auto;
-        }
-
-        .navbar {
-            background-color: #ff6600;
-            color: #000;
-            padding: 8px 16px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 14px;
-            border-radius: 4px;
-        }
-
-        .navbar-left a,
-        .navbar-right a {
-            font-family: Verdana, Geneva, sans-serif;
-            font-weight: 400;
-            font-size: 13px;
-            line-height: 12px;
-            color: #000;
-            text-decoration: none;
-            margin: 0 4px;
-        }
-
-        .navbar-left a:hover,
-        .navbar-right a:hover {
-            text-decoration: underline;
-        }
-
-        .navbar-left .logo {
-            background-color: #fff;
-            color: #ff6600;
-            padding: 2px 4px;
-            font-weight: bold;
-            border-radius: 2px;
-            margin-right: 4px;
-        }
-
-        .navbar-left .site-name {
-            font-family: Verdana, Geneva, sans-serif;
-            font-weight: 700;
-            font-size: 13px;
-            line-height: 12px;
-            color: #000;
-            margin-right: 8px;
-        }
-
-        /* Responsive styles */
-        @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-                padding: 10px;
-            }
-
-            .navbar-left,
-            .navbar-right {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            .navbar-left a,
-            .navbar-right a {
-                font-size: 12px;
-                margin: 4px 2px;
-            }
-
-            .navbar-left .site-name {
-                font-size: 12px;
-            }
-
-            .navbar-left .logo {
-                margin-bottom: 5px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .navbar-left {
-                flex-direction: column;
-                align-items: center;
-                margin-bottom: 10px;
-            }
-
-            .navbar-left a,
-            .navbar-right a {
-                font-size: 11px;
-            }
-
-            .navbar-right {
-                order: -1;
-                margin-bottom: 10px;
-            }
-
-            .navbar-container {
-                width: 100%;
-                padding: 0 10px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
 </head>
 <body>
     <div class="navbar-container">
@@ -133,6 +26,250 @@
                 <a href="#">login</a>
             </div>
         </nav>
+    </div>
+
+    <!-- Post List -->
+    <div class="post-list">
+        <div class="post">
+            <span class="post-rank">1.</span>
+            <a href="#" class="post-title">The Importance of Local Development (fastpaced.com)</a>
+            <div class="post-details">
+                67 points by dawnn 2 hours ago | hide | 43 comments
+            </div>
+        </div>
+
+        <div class="post">
+            <span class="post-rank">2.</span>
+            <a href="#" class="post-title">HPy – A Better C API for Python (pythoncapi.org)</a>
+            <div class="post-details">
+                132 points by yde4096 6 hours ago | hide | 32 comments
+            </div>
+        </div>
+
+        <div class="post">
+            <span class="post-rank">3.</span>
+            <a href="#" class="post-title">Machine Learning for Data Engineers (techgeek.com)</a>
+            <div class="post-details">
+                88 points by techie23 1 hour ago | hide | 18 comments
+            </div>
+        </div>
+
+        <div class="post">
+            <span class="post-rank">4.</span>
+            <a href="#" class="post-title">How to Manage Large Codebases (coderweekly.com)</a>
+            <div class="post-details">
+                95 points by dev_guru 3 hours ago | hide | 45 comments
+            </div>
+        </div>
+
+        <div class="post">
+            <span class="post-rank">5.</span>
+            <a href="#" class="post-title">React vs Vue: A Comparative Study (frontenddevs.org)</a>
+            <div class="post-details">
+                134 points by jslover 4 hours ago | hide | 23 comments
+            </div>
+        </div>
+
+        <div class="post">
+            <span class="post-rank">6.</span>
+            <a href="#" class="post-title">The Best Practices for Python Web Development (pythonmaster.com)</a>
+            <div class="post-details">
+                110 points by webdev2024 5 hours ago | hide | 19 comments
+            </div>
+        </div>
+
+        <div class="post">
+            <span class="post-rank">7.</span>
+            <a href="#" class="post-title">Creating an API with Django Rest Framework (djangoapp.com)</a>
+            <div class="post-details">
+                142 points by dev_nerd 6 hours ago | hide | 30 comments
+            </div>
+        </div>
+
+        <div class="post">
+            <span class="post-rank">8.</span>
+            <a href="#" class="post-title">Introduction to Kubernetes (k8sinsight.com)</a>
+            <div class="post-details">
+                80 points by containerdev 7 hours ago | hide | 12 comments
+            </div>
+        </div>
+
+        <div class="post">
+            <span class="post-rank">9.</span>
+            <a href="#" class="post-title">10 Tips to Optimize Your JavaScript Code (jsoptimization.com)</a>
+            <div class="post-details">
+                109 points by coder3000 8 hours ago | hide | 28 comments
+            </div>
+        </div>
+
+        <div class="post">
+            <span class="post-rank">10.</span>
+            <a href="#" class="post-title">Building Scalable Microservices with Go (golang.io)</a>
+            <div class="post-details">
+                58 points by microdev 9 hours ago | hide | 8 comments
+            </div>
+        </div>
+
+        <div class="post">
+            <span class="post-rank">11.</span>
+            <a href="#" class="post-title">AI and the Future of Work (futurework.com)</a>
+            <div class="post-details">
+                120 points by ai_thinker 10 hours ago | hide | 33 comments
+            </div>
+        </div>
+
+        <div class="post">
+            <span class="post-rank">12.</span>
+            <a href="#" class="post-title">The Role of Cloud Computing in Modern Software Development (clouddev.com)</a>
+            <div class="post-details">
+                75 points by devcloud 11 hours ago | hide | 15 comments
+            </div>
+        </div>
+
+        <div class="post">
+            <span class="post-rank">13.</span>
+            <a href="#" class="post-title">Understanding the CAP Theorem (distributed.com)</a>
+            <div class="post-details">
+                65 points by sysadmin123 12 hours ago | hide | 10 comments
+            </div>
+        </div>
+
+        <div class="post">
+            <span class="post-rank">14.</span>
+            <a href="#" class="post-title">Refactoring Your Code: When and How (codebetter.com)</a>
+            <div class="post-details">
+                100 points by refactor_guru 13 hours ago | hide | 25 comments
+            </div>
+        </div>
+
+        <div class="post">
+            <span class="post-rank">15.</span>
+            <a href="#" class="post-title">10 Things Every Developer Should Know About Git (git-tips.com)</a>
+            <div class="post-details">
+                145 points by gitmaster 14 hours ago | hide | 55 comments
+            </div>
+        </div>
+
+        <div class="post">
+            <span class="post-rank">16.</span>
+            <a href="#" class="post-title">CSS Grid vs Flexbox: A Comparison (cssgridflex.com)</a>
+            <div class="post-details">
+                60 points by csspro 15 hours ago | hide | 22 comments
+            </div>
+        </div>
+
+        <div class="post">
+            <span class="post-rank">17.</span>
+            <a href="#" class="post-title">Creating Real-time Web Apps with WebSockets (realtimeapps.com)</a>
+            <div class="post-details">
+                135 points by websocketfan 16 hours ago | hide | 47 comments
+            </div>
+        </div>
+
+        <div class="post">
+            <span class="post-rank">18.</span>
+            <a href="#" class="post-title">How to Use Docker for Development (dockerfordevs.com)</a>
+            <div class="post-details">
+                100 points by dockerlover 17 hours ago | hide | 28 comments
+            </div>
+        </div>
+
+        <div class="post">
+            <span class="post-rank">19.</span>
+            <a href="#" class="post-title">WebAssembly: The Future of the Web? (wasmfuture.com)</a>
+            <div class="post-details">
+                120 points by wasmdev 18 hours ago | hide | 18 comments
+            </div>
+        </div>
+
+        <div class="post">
+            <span class="post-rank">20.</span>
+            <a href="#" class="post-title">GitHub Actions for Continuous Integration (ciwithgithub.com)</a>
+            <div class="post-details">
+                105 points by ci_expert 19 hours ago | hide | 39 comments
+            </div>
+        </div>
+
+        <div class="post">
+            <span class="post-rank">21.</span>
+            <a href="#" class="post-title">Building Serverless Applications with AWS (serverlessaws.com)</a>
+            <div class="post-details">
+                130 points by awsdev 20 hours ago | hide | 53 comments
+            </div>
+        </div>
+
+        <div class="post">
+            <span class="post-rank">22.</span>
+            <a href="#" class="post-title">How to Use Firebase for Your Web App (firebaseapp.com)</a>
+            <div class="post-details">
+                110 points by firedev 21 hours ago | hide | 35 comments
+            </div>
+        </div>
+
+        <div class="post">
+            <span class="post-rank">23.</span>
+            <a href="#" class="post-title">Designing User Interfaces for Developers (devui.com)</a>
+            <div class="post-details">
+                80 points by uidesigner 22 hours ago | hide | 25 comments
+            </div>
+        </div>
+
+        <div class="post">
+            <span class="post-rank">24.</span>
+            <a href="#" class="post-title">What is the Future of DevOps? (devopsfuture.com)</a>
+            <div class="post-details">
+                70 points by devopsdude 23 hours ago | hide | 12 comments
+            </div>
+        </div>
+
+        <div class="post">
+            <span class="post-rank">25.</span>
+            <a href="#" class="post-title">Tech Careers: How to Transition into Software Development (careertech.com)</a>
+            <div class="post-details">
+                90 points by careerchanger 24 hours ago | hide | 30 comments
+            </div>
+        </div>
+
+        <div class="post">
+            <span class="post-rank">26.</span>
+            <a href="#" class="post-title">Why Every Developer Should Learn SQL (sqldev.com)</a>
+            <div class="post-details">
+                120 points by sqlmaster 25 hours ago | hide | 27 comments
+            </div>
+        </div>
+
+        <div class="post">
+            <span class="post-rank">27.</span>
+            <a href="#" class="post-title">How to Get Started with Machine Learning (mlstarter.com)</a>
+            <div class="post-details">
+                110 points by ml_guru 26 hours ago | hide | 18 comments
+            </div>
+        </div>
+
+        <div class="post">
+            <span class="post-rank">28.</span>
+            <a href="#" class="post-title">Introduction to NoSQL Databases (nosql101.com)</a>
+            <div class="post-details">
+                95 points by nosqlfan 27 hours ago | hide | 21 comments
+            </div>
+        </div>
+
+        <div class="post">
+            <span class="post-rank">29.</span>
+            <a href="#" class="post-title">Deploying Web Applications on DigitalOcean (doapps.com)</a>
+            <div class="post-details">
+                65 points by dev_digital 28 hours ago | hide | 10 comments
+            </div>
+        </div>
+
+        <div class="post">
+            <span class="post-rank">30.</span>
+            <a href="#" class="post-title">A Guide to Ethical Hacking (ethicalhackers.com)</a>
+            <div class="post-details">
+                140 points by ethicalhack 29 hours ago | hide | 45 comments
+            </div>
+        </div>
+
     </div>
 </body>
 </html>
