@@ -1,4 +1,6 @@
 {% load static %}
+{% load tz %}  <!-- For timezone utilities -->
+{% load humanize %}  <!-- For human-readable time display -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,12 +18,18 @@
                 <span class="site-name">Hacker News</span>
                 <!-- Add the 'active' class to the 'new' link if we're on the 'newest' page -->
                 <a href="{% url 'home:newest' %}" class="{% if request.path == '/newest/' %}active{% endif %}">new</a> |
-                <a href="#">past</a> |
+                <a href="{% url 'home:past' %}">past</a> |
                 <a href="#">comments</a> |
                 <a href="#">ask</a> |
                 <a href="#">show</a> |
                 <a href="#">jobs</a> |
                 <a href="#">submit</a>
+                <!-- Only show the 'yesterday' section on the 'past' page -->
+            {% if page == 'past' %}
+            | <span class="yesterday">{{ current_date }}</span>
+        {% endif %}
+
+                
             </div>
             <div class="navbar-right">
                 <a href="#">login</a>
@@ -31,21 +39,43 @@
 
     <!-- Post List -->
     <div class="post-list">
+        {% if page == 'past' %}
+        <div class="date-info">
+            <p>Stories from {{ current_date }} (UTC)</p>
+            <p>
+                Go back 
+                <a href="{% url 'home:past_with_days' days_ago=days_ago|add:"1" %}">a day</a>, 
+                <a href="{% url 'home:past_with_days' days_ago=days_ago|add:"30" %}">month</a>, 
+                <a href="{% url 'home:past_with_days' days_ago=days_ago|add:"365" %}">year</a>.
+                {% if days_ago > 0 %}
+                Go forward <a href="{% url 'home:next_day' days_ago=days_ago|add:"-1" %}">a day</a>.
+                {% else %}
+                <!-- Optionally, disable the "Go forward" link if we are already at the earliest day -->
+                <span>Go forward a day (disabled)</span>
+                {% endif %}
+            </p>
+        </div>
+        
+        
+        {% endif %}
+
         {% for post in posts %}
         <div class="post">
             <span class="post-rank">{{ forloop.counter }}.</span>
             <a href="#" class="post-title">{{ post.title }}</a>
             <!-- Link to the external URL -->
-        <a href="{{ post.url }}" class="post-title" target="_blank">
-            ({{ post.url|slice:"7:" }})
-        </a>
-        <div class="post-details">
-            {% if page == 'home' %}
-                {{ post.points }} points by {{ post.author }} {{ post.created_at|timesince }} ago | hide | {{ post.comment_count|default:"0" }} comments
-            {% elif page == 'newest' %}
-                {{ post.points|pluralize }} point{% if post.points != 1 %}s{% endif %} by {{ post.author }} {{ post.created_at|timesince }} ago | hide | past | discuss
-            {% endif %}
-        </div>
+            <a href="{{ post.url }}" class="post-title" target="_blank">
+                ({{ post.url|slice:"7:" }})
+            </a>
+            <div class="post-details">
+                {% if page == 'home' %}
+                    {{ post.points }} points by {{ post.author }} {{ post.created_at|timesince }} ago | hide | {{ post.comment_count|default:"0" }} comments
+                {% elif page == 'newest' %}
+                    {{ post.points|pluralize }} point{% if post.points != 1 %}s{% endif %} by {{ post.author }} {{ post.created_at|timesince }} ago | hide | past | discuss
+                {% elif page == 'past' %}
+                    {{ post.points }} points by {{ post.author }} {{ post.created_at|timesince }} ago | {{ post.comment_count|default:"0" }} comments
+                {% endif %}
+            </div>
         </div>
         {% empty %}
             <p>No posts available.</p>

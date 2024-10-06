@@ -37,8 +37,6 @@
             text-decoration: underline;
         }
 
-
-/* Add this to your CSS file */
 .navbar a.active {
     color: #ffffff;   /* Set the text color to white */
     font-weight: 400;  /* Optional: Make the active link bold */
@@ -63,7 +61,41 @@
             margin-right: 8px;
         }
 
+        .yesterday {
+            color: white;
+        }
+        
         /* Post List Container */
+
+        /* Styling for the .date-info container */
+.date-info {
+    padding: 10px 20px;
+    margin-bottom: 15px;
+    font-family: Verdana, Geneva, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    color: #828282;
+    line-height: 1.5;
+}
+
+/* Styling for the links inside the .date-info */
+.date-info a {
+    text-decoration: underline;
+    font-family: Verdana, Geneva, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    color: #828282;
+    line-height: 1.5;
+}
+
+/* Optional: Add some styling for when a link is hovered for better UX */
+.date-info a:hover {
+    color: #555;  /* Darker color on hover */
+}
+
+
         .post-list {
             width: 85%;
             margin: 0 auto;
