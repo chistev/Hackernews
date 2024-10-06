@@ -156,6 +156,8 @@
     text-align: center;
     background-color: #f6f6ef;
     padding: 15px 0;
+    width: 85%; /* Same width as post-list */
+    margin: 0 auto; /* Center the footer */
 }
 
 .footer-links {

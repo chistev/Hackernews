@@ -1,0 +1,49 @@
+ .comment-section {
+    width: 85%;
+    margin: 0 auto;
+    font-size: 14px;
+    background-color: #f6f6ef;
+}
+
+.comment-item {
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.comment-header {
+    font-size: 10px;
+    color: #828282;
+}
+
+.comment-header a {
+    color: #828282;
+    text-decoration: none;
+    margin: 0 4px;
+}
+
+.comment-header a:hover {
+    text-decoration: underline;
+}
+
+.comment-body {
+    margin-top: 5px;
+    font-family: 'Verdana', Geneva, sans-serif; /* Family */
+    font-style: normal; /* Style */
+    font-weight: 400; /* Weight */
+    font-size: 12px; /* Size */
+    line-height: normal; /* Line Height */
+    color: #000000; /* Color */
+}
+
+.comment-body p {
+    margin: 0;
+}
+
+.comment-author, .comment-time, .parent-link, .context-link, .on-link, .story-link {
+    font-family: 'Verdana', Geneva, sans-serif; /* Family */
+    font-style: normal; /* Style */
+    font-weight: 400; /* Weight */
+    font-size: 11px; /* Size */
+    line-height: normal; /* Line Height */
+    color: #828282; /* Color */
+}

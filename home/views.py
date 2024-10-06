@@ -36,6 +36,7 @@ def past_posts(request, days_ago=1):
     }
     return render(request, 'home/index.html', context)
 
+
 def next_day_posts(request, days_ago=1):
     # Calculate the target date based on the `days_ago` parameter
     target_date = timezone.now() - timedelta(days=days_ago) + timedelta(days=1)

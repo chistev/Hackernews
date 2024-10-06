@@ -1,0 +1,60 @@
+{% load static %}
+{% load tz %}  <!-- For timezone utilities -->
+{% load humanize %}  <!-- For human-readable time display -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Hacker News Clone{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/comments.css' %}">
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar-container">
+        <nav class="navbar">
+            <div class="navbar-left">
+                <span class="logo">Y</span>
+                <span class="site-name">Hacker News</span>
+                <a href="{% url 'home:newest' %}" class="{% if request.path == '/newest/' %}active{% endif %}">new</a> |
+                <a href="{% url 'home:past' %}">past</a> |
+                <a href="{% url 'comments:comment_page' %}" class="{% if page == 'comments' %}active{% endif %}">comments</a> |
+                <a href="#">ask</a> |
+                <a href="#">show</a> |
+                <a href="#">jobs</a> |
+                <a href="#">submit</a>
+                | <span class="yesterday">{{ current_date }}</span>
+            </div>
+            <div class="navbar-right">
+                <a href="#">login</a>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Page Content -->
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <!-- Footer Section -->
+    <div class="footer">
+        <div class="footer-links">
+            <a href="#">Guidelines</a> | 
+            <a href="#">FAQ</a> | 
+            <a href="#">Lists</a> | 
+            <a href="#">API</a> | 
+            <a href="#">Security</a> | 
+            <a href="#">Legal</a> | 
+            <a href="#">Apply to YC</a> | 
+            <a href="#">Contact</a>
+        </div>
+        <div class="search">
+            <label for="search">Search:</label>
+            <input type="text" id="search" name="search">
+        </div>
+    </div>
+</body>
+</html>

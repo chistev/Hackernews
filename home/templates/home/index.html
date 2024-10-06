@@ -1,42 +1,8 @@
-{% load static %}
-{% load tz %}  <!-- For timezone utilities -->
-{% load humanize %}  <!-- For human-readable time display -->
+{% extends 'home/base.html' %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hacker News Clone</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
-</head>
-<body>
-    <div class="navbar-container">
-        <nav class="navbar">
-            <div class="navbar-left">
-                <span class="logo">Y</span>
-                <span class="site-name">Hacker News</span>
-                <!-- Add the 'active' class to the 'new' link if we're on the 'newest' page -->
-                <a href="{% url 'home:newest' %}" class="{% if request.path == '/newest/' %}active{% endif %}">new</a> |
-                <a href="{% url 'home:past' %}">past</a> |
-                <a href="#">comments</a> |
-                <a href="#">ask</a> |
-                <a href="#">show</a> |
-                <a href="#">jobs</a> |
-                <a href="#">submit</a>
-                <!-- Only show the 'yesterday' section on the 'past' page -->
-            {% if page == 'past' %}
-            | <span class="yesterday">{{ current_date }}</span>
-        {% endif %}
+{% block title %}Home - Hacker News Clone{% endblock %}
 
-                
-            </div>
-            <div class="navbar-right">
-                <a href="#">login</a>
-            </div>
-        </nav>
-    </div>
-
+{% block content %}
     <!-- Post List -->
     <div class="post-list">
         {% if page == 'past' %}
@@ -48,22 +14,18 @@
                 <a href="{% url 'home:past_with_days' days_ago=days_ago|add:"30" %}">month</a>, 
                 <a href="{% url 'home:past_with_days' days_ago=days_ago|add:"365" %}">year</a>.
                 {% if days_ago > 0 %}
-                Go forward <a href="{% url 'home:next_day' days_ago=days_ago|add:"-1" %}">a day</a>.
+                Go forward <a href="{% url 'home:next_day' days_ago=days_ago|add:"-1" %}">a day</a> .
                 {% else %}
-                <!-- Optionally, disable the "Go forward" link if we are already at the earliest day -->
                 <span>Go forward a day (disabled)</span>
                 {% endif %}
             </p>
         </div>
-        
-        
         {% endif %}
 
         {% for post in posts %}
         <div class="post">
             <span class="post-rank">{{ forloop.counter }}.</span>
             <a href="#" class="post-title">{{ post.title }}</a>
-            <!-- Link to the external URL -->
             <a href="{{ post.url }}" class="post-title" target="_blank">
                 ({{ post.url|slice:"7:" }})
             </a>
@@ -81,29 +43,9 @@
             <p>No posts available.</p>
         {% endfor %}
 
-        <!-- More link and horizontal line -->
         <div class="more-container">
             <a href="#" class="more-link">More</a>
             <div class="horizontal-line"></div>
         </div>
-
-        <!-- Footer Section -->
-        <div class="footer">
-            <div class="footer-links">
-                <a href="#">Guidelines</a> | 
-                <a href="#">FAQ</a> | 
-                <a href="#">Lists</a> | 
-                <a href="#">API</a> | 
-                <a href="#">Security</a> | 
-                <a href="#">Legal</a> | 
-                <a href="#">Apply to YC</a> | 
-                <a href="#">Contact</a>
-            </div>
-            <div class="search">
-                <label for="search">Search:</label>
-                <input type="text" id="search" name="search">
-            </div>
-        </div>
     </div>
-</body>
-</html>
+{% endblock %}
