@@ -9,6 +9,7 @@ urlpatterns = [
     path('comments/', include('comments.urls')),
     path('ask/', include('ask.urls')),
     path('show/', include('show.urls')),
+    path('jobs/', include('jobs.urls')),
 ]
 
 # Serve static files during development

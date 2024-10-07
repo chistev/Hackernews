@@ -23,7 +23,7 @@
                 <a href="{% url 'comments:comment_page' %}" class="{% if page == 'comments' %}active{% endif %}">comments</a> |
                 <a href="{% url 'ask:ask_page' %}" class="{% if page == 'ask' %}active{% endif %}">ask</a> |
                 <a href="{% url 'show:show_page' %}" class="{% if page == 'show' %}active{% endif %}">show</a> |
-                <a href="#">jobs</a> |
+                <a href="{% url 'jobs:jobs_page' %}" class="{% if page == 'jobs' %}active{% endif %}">jobs</a> |
                 <a href="#">submit</a>
                 | <span class="yesterday">{{ current_date }}</span>
             </div>
