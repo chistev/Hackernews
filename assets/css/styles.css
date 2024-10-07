@@ -108,6 +108,19 @@
             border-bottom: 1px solid #ddd;
         }
 
+        .upvote-button {
+            color: #ff6600;
+            cursor: pointer;
+            font-size: 18px;
+            margin-right: 5px;
+            user-select: none; /* Prevent text selection on double-click */
+        }
+        
+        .upvote-button:hover {
+            color: #ff8c00;
+        }
+        
+
         .post-title {
             font-size: 13px;
             font-weight: 400;

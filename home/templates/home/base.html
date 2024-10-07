@@ -8,8 +8,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Hacker News Clone{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/comments.css' %}">
+
+    <!-- Include HTMX -->
+    <script src="https://unpkg.com/htmx.org@1.8.4"></script>
 </head>
 <body>
     <!-- Navbar -->
@@ -17,7 +21,7 @@
         <nav class="navbar">
             <div class="navbar-left">
                 <span class="logo">Y</span>
-                <span class="site-name">Hacker News</span>
+                <a href="/" class="site-name text-decoration-none">Hacker News</a>
                 <a href="{% url 'home:newest' %}" class="{% if request.path == '/newest/' %}active{% endif %}">new</a> |
                 <a href="{% url 'home:past' %}">past</a> |
                 <a href="{% url 'comments:comment_page' %}" class="{% if page == 'comments' %}active{% endif %}">comments</a> |
@@ -56,5 +60,29 @@
             <input type="text" id="search" name="search">
         </div>
     </div>
+
+    <script>
+        // Function to get the CSRF token from cookies
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                let cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    let cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+      
+        // Set the CSRF token for all HTMX requests
+        document.body.addEventListener('htmx:configRequest', (event) => {
+            event.detail.headers['X-CSRFToken'] = getCookie('csrftoken');
+        });
+      </script>
+      
 </body>
 </html>

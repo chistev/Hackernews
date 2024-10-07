@@ -1,0 +1,23 @@
+{% extends 'home/base.html' %}
+{% load custom_filters %}
+
+{% block title %}Posts for {{ domain }} - Hacker News Clone{% endblock %}
+
+{% block content %}
+    <div class="post-list">
+        {% for post in posts %}
+        <div class="post">
+            <a href="{{ post.url }}" class="post-title" target="_blank">
+                {{ post.title }} ({{ post.url|extract_domain }})
+            </a>
+            <div class="post-details">
+                {{ post.points }} points by {{ post.author }} {{ post.created_at|timesince }} ago | 
+                past| 
+                {{ post.comment_count|default:"0" }} comments
+            </div>
+        </div>
+        {% empty %}
+            <p>No posts available for this domain.</p>
+        {% endfor %}
+    </div>
+{% endblock %}

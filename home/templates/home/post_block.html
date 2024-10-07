@@ -1,0 +1,18 @@
+<div class="post" id="post-{{ post.id }}">
+    <span class="post-rank">{{ forloop.counter }}.</span>
+    <span class="upvote-button"
+          data-post-id="{{ post.id }}"
+          hx-get="{% url 'home:upvote_post' post.id %}"
+          hx-target="#post-{{ post.id }}"
+          hx-swap="outerHTML"
+          onclick="return false;"
+          style="{% if request.user in post.upvoted_by.all %}display:none;{% endif %}">▲</span>
+
+    <a href="{{ post.url }}" class="post-title" target="_blank">{{ post.title }}</a>
+    <a href="{% url 'home:posts_by_domain' post.url|extract_domain %}" class="post-title" target="_blank">
+        ({{ post.url|extract_domain }})
+    </a>
+    <div id="post-{{ post.id }}-details" class="post-details">
+        <span id="post-{{ post.id }}-points">{{ post.points }}</span> points by {{ post.author }} {{ post.created_at|timesince }} ago | hide | {{ post.comment_count|default:"0" }} comments
+    </div>
+</div>

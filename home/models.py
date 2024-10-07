@@ -8,5 +8,10 @@ class Post(models.Model):
     author = models.CharField(max_length=100)  # Author of the post
     created_at = models.DateTimeField(auto_now_add=True)  # Automatically set on creation
 
+    def upvote(self):
+        """Increment the points (upvote the post)."""
+        self.points += 1
+        self.save()
+
     def __str__(self):
         return self.title
