@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, get_object_or_404
 from django.template.loader import render_to_string
@@ -69,11 +70,14 @@ def posts_by_domain(request, domain):
     return render(request, 'home/posts_by_domain.html', context)
 
 
+@login_required  # Ensure only logged-in users can upvote
 @require_POST
 def upvote_post(request, post_id):
     post = get_object_or_404(Post, id=post_id)
-    post.upvote()
+    user = request.user
 
+    post.upvote(user)
+
+    # Return the updated points as HTML
     post_html = render_to_string('home/points_snippet.html', {'post': post})
-    # Return the HTML fragment
     return HttpResponse(post_html)
