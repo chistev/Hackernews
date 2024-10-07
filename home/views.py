@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, get_object_or_404
 from django.template.loader import render_to_string
@@ -7,17 +8,21 @@ from datetime import timedelta
 
 from django.views.decorators.http import require_POST
 
-from .models import Post
+from .models import Post, HiddenPost
 
 
 def home_page(request):
     posts = Post.objects.all()  # Get all posts
+
+    if request.user.is_authenticated:
+        hidden_posts = HiddenPost.objects.filter(user=request.user).values_list('post_id', flat=True)
+        posts = posts.exclude(id__in=hidden_posts)  # Exclude hidden posts for the logged-in user
+
     context = {
         'posts': posts,
         'page': 'home',  # Add this to distinguish the page
     }
     return render(request, 'home/index.html', context)
-
 
 def newest_page(request):
     posts = Post.objects.all().order_by('-created_at')  # Order by created_at descending
@@ -81,3 +86,26 @@ def upvote_post(request, post_id):
     # Return the updated points as HTML
     post_html = render_to_string('home/points_snippet.html', {'post': post})
     return HttpResponse(post_html)
+
+def author_details(request, author_id):
+    author = get_object_or_404(User, id=author_id)
+    posts = Post.objects.filter(author=author).order_by('-created_at')  # Get posts by this author
+
+    context = {
+        'author': author,
+        'posts': posts,
+    }
+    return render(request, 'home/author_details.html', context)
+
+
+@login_required
+@require_POST
+def hide_post(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    HiddenPost.objects.get_or_create(user=request.user, post=post)
+
+    # Fetch all remaining posts for the current page
+    remaining_posts = Post.objects.exclude(hiddenpost__user=request.user).order_by('-created_at')
+
+    # Render the updated posts list
+    return render(request, 'home/hidden_post.html', {'posts': remaining_posts, 'page': 'home'})

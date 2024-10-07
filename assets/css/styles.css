@@ -137,6 +137,18 @@
             color: #828282;
         }
 
+        /* Style for the author link inside post-details */
+.post-details a {
+    color: #828282; /* Same color as other details */
+    text-decoration: none; /* Remove underline */
+}
+
+.post-details a:hover {
+    text-decoration: underline; /* Optional: Add underline on hover */
+    color: #555; /* Optional: Change color on hover */
+}
+
+
         .post-rank {
             font-weight: bold;
             color: #ff6600;

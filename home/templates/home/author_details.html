@@ -1,0 +1,17 @@
+{% extends 'home/base.html' %}
+
+{% block title %}{{ author.username }}'s Posts{% endblock %}
+
+{% block content %}
+    <h1>Posts by {{ author.username }}</h1>
+    <ul class="post-list">
+        {% for post in posts %}
+        <li>
+            <a href="{{ post.url }}" class="post-title">{{ post.title }}</a>
+            ({{ post.points }} points) - {{ post.created_at|timesince }} ago
+        </li>
+        {% empty %}
+        <p>{{ author.username }} has not posted anything yet.</p>
+        {% endfor %}
+    </ul>
+{% endblock %}

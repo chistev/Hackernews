@@ -14,4 +14,8 @@ urlpatterns = [
     path('domain/<str:domain>/', views.posts_by_domain, name='posts_by_domain'),
 
     path('upvote/<int:post_id>/', views.upvote_post, name='upvote_post'),
+
+    path('author/<int:author_id>/', views.author_details, name='posts_by_author'),
+
+    path('hide/<int:post_id>/', views.hide_post, name='hide_post')
 ]

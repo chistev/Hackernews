@@ -2,15 +2,14 @@ from django.contrib.auth.models import User
 from django.db import models
 
 class Post(models.Model):
-    title = models.CharField(max_length=200)  # Title of the post
-    url = models.URLField()  # URL of the post
+    title = models.CharField(max_length=200)
+    url = models.URLField()
     points = models.IntegerField(default=1)
-    author = models.CharField(max_length=100)  # Author of the post
-    created_at = models.DateTimeField(auto_now_add=True)  # Automatically set on creation
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
     upvoted_by = models.ManyToManyField(User, related_name='upvoted_posts', blank=True)
 
     def upvote(self, user):
-        """Toggles the upvote for the post by a user."""
         if user in self.upvoted_by.all():
             self.points -= 1
             self.upvoted_by.remove(user)
@@ -21,3 +20,9 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class HiddenPost(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    hidden_at = models.DateTimeField(auto_now_add=True)
