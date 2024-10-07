@@ -7,6 +7,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('home.urls')),
     path('comments/', include('comments.urls')),
+    path('ask/', include('ask.urls')),
 ]
 
 # Serve static files during development

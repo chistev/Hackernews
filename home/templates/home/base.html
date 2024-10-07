@@ -21,7 +21,7 @@
                 <a href="{% url 'home:newest' %}" class="{% if request.path == '/newest/' %}active{% endif %}">new</a> |
                 <a href="{% url 'home:past' %}">past</a> |
                 <a href="{% url 'comments:comment_page' %}" class="{% if page == 'comments' %}active{% endif %}">comments</a> |
-                <a href="#">ask</a> |
+                <a href="{% url 'ask:ask_page' %}" class="{% if page == 'ask' %}active{% endif %}">ask</a> |
                 <a href="#">show</a> |
                 <a href="#">jobs</a> |
                 <a href="#">submit</a>
