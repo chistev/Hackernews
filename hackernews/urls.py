@@ -10,6 +10,7 @@ urlpatterns = [
     path('ask/', include('ask.urls')),
     path('show/', include('show.urls')),
     path('jobs/', include('jobs.urls')),
+    path('auth/', include('authenticate.urls')),
 ]
 
 # Serve static files during development

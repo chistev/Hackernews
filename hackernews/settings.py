@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'ask',
     'show',
     'jobs',
+    'authenticate',
     
     'django.contrib.humanize',
 ]
