@@ -1,17 +1,32 @@
 {% extends 'home/base.html' %}
 
-{% block title %}{{ author.username }}'s Posts{% endblock %}
+{% block title %}Author's Profile - Hacker News Clone{% endblock %}
 
 {% block content %}
-    <h1>Posts by {{ author.username }}</h1>
-    <ul class="post-list">
-        {% for post in posts %}
-        <li>
-            <a href="{{ post.url }}" class="post-title">{{ post.title }}</a>
-            ({{ post.points }} points) - {{ post.created_at|timesince }} ago
-        </li>
-        {% empty %}
-        <p>{{ author.username }} has not posted anything yet.</p>
-        {% endfor %}
-    </ul>
+<div class="profile-container">
+    <div class="profile-header">
+        <table>
+            <tr>
+                <td>user:</td>
+                <td>JohnDoe</td> <!-- Placeholder username -->
+            </tr>
+            <tr>
+                <td>created:</td>
+                <td>2 years ago</td> <!-- Placeholder for creation time -->
+            </tr>
+            <tr>
+                <td>karma:</td>
+                <td>1500</td> <!-- Placeholder karma points -->
+            </tr>
+            <tr>
+                <td>about:</td>
+                <td>
+                    <a href="#">submissions</a>
+                    <a href="#">comments</a>
+                    <a href="#">favorites</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
 {% endblock %}

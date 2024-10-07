@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.http import JsonResponse, HttpResponse
+from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from django.template.loader import render_to_string
 from django.utils import timezone
@@ -24,8 +24,14 @@ def home_page(request):
     }
     return render(request, 'home/index.html', context)
 
+
 def newest_page(request):
-    posts = Post.objects.all().order_by('-created_at')  # Order by created_at descending
+    posts = Post.objects.all().order_by('-created_at')  # Get all posts ordered by created_at
+
+    if request.user.is_authenticated:
+        hidden_posts = HiddenPost.objects.filter(user=request.user).values_list('post_id', flat=True)
+        posts = posts.exclude(id__in=hidden_posts)  # Exclude hidden posts for the logged-in user
+
     context = {
         'posts': posts,
         'page': 'newest',  # Add this to distinguish the page
@@ -34,11 +40,12 @@ def newest_page(request):
 
 
 def past_posts(request, days_ago=1):
-    # Calculate the target date based on the `days_ago` parameter
     target_date = timezone.now() - timedelta(days=days_ago)
-
-    # Query the posts created on the specific date (target_date)
     posts = Post.objects.filter(created_at__date=target_date.date()).order_by('-created_at')
+
+    if request.user.is_authenticated:
+        hidden_posts = HiddenPost.objects.filter(user=request.user).values_list('post_id', flat=True)
+        posts = posts.exclude(id__in=hidden_posts)  # Exclude hidden posts for the logged-in user
 
     context = {
         'posts': posts,
