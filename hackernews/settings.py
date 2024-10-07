@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'home',
     'comments',
     'ask',
+    'show',
     
     'django.contrib.humanize',
 ]
