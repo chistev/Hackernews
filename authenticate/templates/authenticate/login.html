@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <h1>Login</h1>
@@ -18,6 +19,21 @@
             <input type="password" id="password" name="password" required>
         </div>
         <button type="submit">Login</button>
+    </form>
+    <p><a href="#">Forgot your password?</a></p>
+
+    <h2>Create Account</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div>
+            <label for="new-username">Username:</label>
+            <input type="text" id="new-username" name="new-username" required>
+        </div>
+        <div>
+            <label for="new-password">Password:</label>
+            <input type="password" id="new-password" name="new-password" required>
+        </div>
+        <button type="submit">Create Account</button>
     </form>
 </body>
 </html>
