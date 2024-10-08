@@ -265,3 +265,56 @@
                 padding: 0 10px;
             }
         }
+
+        .post-detail {
+            width: 85%;
+            margin: 20px auto;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        
+        .post-title {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .post-details {
+            font-size: 12px;
+            color: #828282;
+            margin: 5px 0 15px 0;
+        }
+        
+        .post-content {
+            font-size: 14px;
+            color: #000;
+        }
+        
+        .post-url {
+            color: #ff6600;
+            text-decoration: underline;
+        }
+        
+        .comments-section {
+            margin-top: 30px;
+        }
+        
+        .comment-form {
+            margin-bottom: 20px;
+        }
+        
+        .comment {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+        }
+        
+        .comment-header {
+            font-size: 12px;
+            color: #828282;
+        }
+        
+        .comment-content {
+            font-size: 14px;
+            color: #000;
+        }
+        

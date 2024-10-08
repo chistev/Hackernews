@@ -17,5 +17,8 @@ urlpatterns = [
 
     path('author/<int:author_id>/', views.author_details, name='posts_by_author'),
 
-    path('hide/<int:post_id>/', views.hide_post, name='hide_post')
+    path('hide/<int:post_id>/', views.hide_post, name='hide_post'),
+
+    path('post/<int:post_id>/', views.post_detail, name='post_detail'),
+
 ]

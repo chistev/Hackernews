@@ -51,23 +51,27 @@
                     <a href="{% url 'home:posts_by_author' post.author.id %}">
                         {{ post.author }}
                     </a> 
-                    {{ post.created_at|timesince }} ago | <a href="#" hx-post="{% url 'home:hide_post' post.id %}" hx-target="#post-{{ post.id }}" hx-swap="outerHTML">hide</a> | {{ post.comment_count|default:"0" }} comments
-                    {% elif page == 'newest' %}
-    <span id="post-{{ post.id }}-points">{{ post.points }}</span> point{% if post.points != 1 %}s{% endif %} by 
-    <a href="{% url 'home:posts_by_author' post.author.id %}">{{ post.author }}</a> 
-    {{ post.created_at|timesince }} ago | 
-    <a href="#" hx-post="{% url 'home:hide_post' post.id %}" hx-target="#post-{{ post.id }}" hx-swap="outerHTML">hide</a> | 
-    <a href="{% url 'home:posts_by_domain' post.url|extract_domain %}">past</a> | 
-    <a href="#">discuss</a>
-
-                    {% elif page == 'past' %}
+                    {{ post.created_at|timesince }} ago | 
+                    <a href="{% url 'home:post_detail' post.id %}">{{ post.comment_count|default:"0" }} comments</a>
+                    | <a href="#" hx-post="{% url 'home:hide_post' post.id %}" hx-target="#post-{{ post.id }}" hx-swap="outerHTML">hide</a>
+                {% elif page == 'newest' %}
+                    <span id="post-{{ post.id }}-points">{{ post.points }}</span> point{% if post.points != 1 %}s{% endif %} by 
+                    <a href="{% url 'home:posts_by_author' post.author.id %}">{{ post.author }}</a> 
+                    {{ post.created_at|timesince }} ago | 
+                    <a href="{% url 'home:post_detail' post.id %}">{{ post.comment_count|default:"0" }} comments</a>
+                    | <a href="#" hx-post="{% url 'home:hide_post' post.id %}" hx-target="#post-{{ post.id }}" hx-swap="outerHTML">hide</a> | 
+                    <a href="{% url 'home:posts_by_domain' post.url|extract_domain %}">past</a> | 
+                    <a href="#">discuss</a>
+                {% elif page == 'past' %}
                     <span id="post-{{ post.id }}-points">{{ post.points }}</span> points by 
                     <a href="{% url 'home:posts_by_author' post.author.id %}">
                         {{ post.author }}
                     </a> 
-                    {{ post.created_at|timesince }} ago | {{ post.comment_count|default:"0" }} comments                    
+                    {{ post.created_at|timesince }} ago | 
+                    <a href="{% url 'home:post_detail' post.id %}">{{ post.comment_count|default:"0" }} comments</a>
                 {% endif %}
             </div>
+            
             
         </div>
         {% empty %}

@@ -116,3 +116,11 @@ def hide_post(request, post_id):
 
     # Render the updated posts list
     return render(request, 'home/hidden_post.html', {'posts': remaining_posts, 'page': 'home'})
+
+
+def post_detail(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    context = {
+        'post': post,
+    }
+    return render(request, 'home/post_detail.html', context)

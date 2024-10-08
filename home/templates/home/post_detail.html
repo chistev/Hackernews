@@ -1,0 +1,14 @@
+{% extends 'home/base.html' %}
+{% load custom_filters %}
+
+{% block title %}{{ post.title }} - Hacker News Clone{% endblock %}
+
+{% block content %}
+    <h1>{{ post.title }}</h1>
+    <p>URL: <a href="{{ post.url }}" target="_blank">{{ post.url }}</a></p>
+    <p>Points: {{ post.points }}</p>
+    <p>Author: <a href="{% url 'home:posts_by_author' post.author.id %}">{{ post.author }}</a></p>
+    <p>Created: {{ post.created_at|timesince }} ago</p>
+    <p>Comments: {{ post.comment_count|default:"0" }}</p>
+    <a href="{% url 'home:posts_by_domain' post.url|extract_domain %}">Back to domain</a>
+{% endblock %}
