@@ -52,3 +52,24 @@ def register_view(request):
 def logout_view(request):
     logout(request)
     return redirect('home:home')
+
+
+def password_reset_view(request):
+    if request.method == 'POST':
+        email = request.POST.get('s')
+
+        # Check if a user exists with the provided email
+        if User.objects.filter(username=email).exists():
+            # User exists, you can redirect them to a different page or render a success message
+            messages.success(request, "A password reset link has been sent to your email.")
+            return redirect('home:home')  # Change to your desired redirect URL
+        else:
+            # User does not exist, redirect to a specific page
+            messages.error(request, "No user found with that email address.")
+            return redirect('authenticate:not_found')  # Change to your desired redirect URL for not found
+
+    return render(request, 'authenticate/password_reset.html')
+
+
+def not_found_view(request):
+    return render(request, 'authenticate/not_found.html')

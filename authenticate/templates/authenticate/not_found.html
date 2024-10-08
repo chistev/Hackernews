@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="referrer" content="origin">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="news.css?sdVFsU7UVqtyRdyGfGXh">
+    <link rel="icon" href="y18.svg">
+    <meta name="robots" content="noindex">
+    <title>Message | Hacker News</title>
+    <!-- Include Bootstrap and other styles -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <script src="https://unpkg.com/htmx.org@1.8.4"></script>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar-container">
+        <nav class="navbar">
+            <div class="navbar-left">
+                <span class="logo">Y</span>
+                <a href="/" class="site-name text-decoration-none">Message</a>
+            </div>
+        </nav>
+    </div>
+
+    <center>
+        <table id="hnmain" border="0" cellpadding="0" cellspacing="0" width="85%" bgcolor="#f6f6ef">
+            <tr><td bgcolor="#ff6600"><table border="0" cellpadding="0" cellspacing="0" width="100%" style="padding:2px"><tr><td style="width:18px;padding-right:4px">
+              </td></tr></table></td></tr>
+            <tr id="pagespace" title="Message" style="height:10px"></tr>
+            <tr><td>
+                <span class="admin"><center><table width="500"><tr><td>
+                    Sorry, there's no email address in the profile so we can't send you a reset link.<br><br>
+                    You're welcome to contact us at <a href="mailto:hn@ycombinator.com">hn@ycombinator.com</a>. Assuming you're the account owner, there's usually something we can do.
+                </td></tr></table></center></span><br><br>
+            </td></tr>
+        </table>
+    </center>
+</body>
+</html>
