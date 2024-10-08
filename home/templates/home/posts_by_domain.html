@@ -6,13 +6,33 @@
 {% block content %}
     <div class="post-list">
         {% for post in posts %}
-        <div class="post">
+        <div class="post" id="post-{{ post.id }}">
+            <span class="post-rank">{{ forloop.counter }}.</span>
+
+            {% if user.is_authenticated %}
+            <span class="upvote-button" data-post-id="{{ post.id }}" 
+                  hx-post="{% url 'home:upvote_post' post.id %}" 
+                  hx-swap="innerHTML" 
+                  hx-target="#post-{{ post.id }}-points">
+                ▲
+            </span>
+            {% else %}
+            <a href="{% url 'authenticate:login' %}" class="upvote-button text-decoration-none">
+                ▲
+            </a>
+            {% endif %}
+
             <a href="{{ post.url }}" class="post-title" target="_blank">
-                {{ post.title }} ({{ post.url|extract_domain }})
+                {{ post.title }}
+            </a>
+            <a href="{% url 'home:posts_by_domain' post.url|extract_domain %}" class="post-title" target="_blank">
+                ({{ post.url|extract_domain }})
             </a>
             <div class="post-details">
-                {{ post.points }} points by {{ post.author }} {{ post.created_at|timesince }} ago | 
-                past| 
+                <span id="post-{{ post.id }}-points">{{ post.points }}</span> points by 
+                <a href="{% url 'home:posts_by_author' post.author.id %}">{{ post.author }}</a> 
+                {{ post.created_at|timesince }} ago | 
+                past | 
                 {{ post.comment_count|default:"0" }} comments
             </div>
         </div>
