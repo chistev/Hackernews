@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Login</h1>
-    <form method="post">
+    <form method="post" action="{% url 'authenticate:login' %}">
         {% csrf_token %}
         <div>
             <label for="username">Username:</label>
@@ -23,7 +23,7 @@
     <p><a href="#">Forgot your password?</a></p>
 
     <h2>Create Account</h2>
-    <form method="post">
+    <form method="post" action="{% url 'authenticate:register' %}">
         {% csrf_token %}
         <div>
             <label for="new-username">Username:</label>
@@ -35,5 +35,13 @@
         </div>
         <button type="submit">Create Account</button>
     </form>
+
+    {% if messages %}
+        <ul>
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
 </body>
 </html>

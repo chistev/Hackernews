@@ -31,9 +31,16 @@
                 <a href="#">submit</a>
                 | <span class="yesterday">{{ current_date }}</span>
             </div>
-            <div class="navbar-right">
-                <a href="#">login</a>
-            </div>
+            <!-- Right side of the navbar (User-related links) -->
+        <div class="navbar-right">
+            {% if user.is_authenticated %}
+                <a href="">{{ user.username }}</a>
+                <span>(1)</span> | 
+                <a href="{% url 'authenticate:logout' %}">logout</a>
+            {% else %}
+                <a href="{% url 'authenticate:login' %}">login</a>
+            {% endif %}
+        </div>
         </nav>
     </div>
 
